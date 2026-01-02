@@ -73,8 +73,6 @@ export const loginController = async (req, res) => {
       });
     }
 
-    console.log(userExist);
-
     const comparePassword = await bcryptjs.compare(
       password,
       userExist.password
