@@ -6,6 +6,8 @@ import authRoute from "./routes/auth.js";
 import complaintRoute from "./routes/complaint.js";
 import docRoute from "./routes/docs.js";
 import bankRoute from "./routes/bank.js";
+import bankOfficerRoute from "./routes/bankOfficer.js";
+import adminRoute from "./routes/admin.js";
 
 dotenv.config();
 
@@ -21,12 +23,16 @@ dbConnection();
 
 // Auth Route
 app.use("/api/auth", authRoute);
+// Admin Route
+app.use("/api", adminRoute);
 // Complaint Route
 app.use("/api", complaintRoute);
 // Doc Route
 app.use("/api", docRoute);
 // Bank Route
 app.use("/api", bankRoute);
+// Bank Officer Route
+app.use("/api", bankOfficerRoute);
 
 app.get("/", (req, res) => {
   res.status(200).json({

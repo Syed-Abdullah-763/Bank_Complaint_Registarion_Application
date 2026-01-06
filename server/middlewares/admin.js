@@ -15,11 +15,9 @@ export const adminAuth = async (req, res, next) => {
       });
     }
 
-    const user = await userModel.findById({ _id: isVerify._id }).select("role");
+    const user = await userModel.findById({ _id: isVerify._id });
 
     if (!user) {
-      console.log("userNot exist");
-
       return res.status(401).json({
         message: "unAth user!",
         status: false,
@@ -28,6 +26,7 @@ export const adminAuth = async (req, res, next) => {
     }
 
     if (user.role === "sbp_admin") {
+      req.user = user;
       next();
     } else {
       return res.status(401).json({

@@ -15,7 +15,7 @@ export const bankOfficerMiddleware = async (req, res, next) => {
       });
     }
 
-    const user = await userModel.findById({ _id: isVerify._id }).select("role");
+    const user = await userModel.findById({ _id: isVerify._id });
 
     if (!user) {
       return res.status(401).json({
@@ -26,6 +26,7 @@ export const bankOfficerMiddleware = async (req, res, next) => {
     }
 
     if (user.role === "bank_officer") {
+      req.user = user;
       next();
     } else {
       return res.status(401).json({
