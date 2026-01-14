@@ -1,6 +1,12 @@
 import NavigateBtn from "../../components/navigateBtn";
 import bankImage from "../../assets/bank-image.jpg";
 import RightArrow from "../../components/rightArrrow";
+import ActionAreaCard from "../../components/homePageCard";
+import handShakeImg from "../../assets/handshake-customer-investor-hand-successful-business-people-shake-hand-after-success-negotiate-contract-partnership-cooperation-concept_28629-184.avif";
+import AssuredWorkloadIcon from "@mui/icons-material/AssuredWorkload";
+import AttachFileIcon from "@mui/icons-material/AttachFile";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import CardMembershipIcon from "@mui/icons-material/CardMembership";
 
 const HomePage = () => {
   return (
@@ -33,6 +39,7 @@ const HomePage = () => {
       </header>
 
       <main>
+        {/* section 1 */}
         <div className="m-5 md:flex gap-2">
           <div className="md:w-2/3 h-110 md:h-100 md:items-baseline p-5 flex flex-col gap-7 align-middle items-center justify-center">
             <h1 className="sm:text-[40px] text-[30px] font-bold text-[#149949]">
@@ -82,6 +89,54 @@ const HomePage = () => {
               className="bg-amber-200 w-full sm:w-1/2 md:w-full h-50 md:h-50"
             />
           </div>
+        </div>
+
+        {/* section 2 */}
+        <div className="w-full h-70 relative">
+          <img
+            src={handShakeImg}
+            alt=""
+            className="w-full h-full object-cover align-middle relative z-9"
+          />
+
+          <div className="mask-t-from-10% mask-t-to-50% absolute top-0 left-0 bg-[#149949] h-full w-full flex items-start z-9"></div>
+          <div className="absolute top-0 left-0 h-full w-full flex items-center justify-center z-999">
+            <h1 className="text-3xl md:text-5xl font-bold text-[#0d0e0dc5]">
+              Trusted Banking
+            </h1>
+          </div>
+        </div>
+
+        {/* section 3 */}
+        <div className="w-full p-10 mh-100 flex flex-col gap-5 items-center justify-center">
+          <h1 className="text-5xl font-bold text-[#149949]">About</h1>
+          <h1 className="text-center w-60 text-[18px] sm:w-100 sm:text-[20px] md:w-200">
+            Our banking app is built to make financial services simpler, safer,
+            and more transparent for everyone. We focus on solving real problems
+            faced by everyday users — delayed services, unclear charges,
+            unresolved complaints, and lack of proper support. Instead of
+            complicated systems and endless waiting, we provide a clear,
+            structured, and reliable platform to manage banking interactions
+            efficiently. Our goal is simple: Give users control over their
+            financial communication Ensure clarity in complaints, requests, and
+            records Promote accountability and proper follow-up We believe
+            banking should work the way it always should have — honest, secure,
+            and user-first. Technology is just a tool; trust is the foundation.
+            Whether you’re tracking an issue, submitting a complaint, or
+            managing important financial information, our app is designed to be
+            straightforward, dependable, and easy to use. We’re committed to:
+            Data security and privacy Clear processes and documentation Reliable
+            support and continuous improvement Because when it comes to money,
+            there’s no room for confusion.
+          </h1>
+        </div>
+
+        {/* section 4 */}
+        <div className="w-full pt-5 pb-5 mh-100 flex flex-wrap items-center justify-center gap-20 ">
+          <ActionAreaCard icon={<AssuredWorkloadIcon />} title="Relaibale" />
+          <ActionAreaCard icon={<AttachFileIcon />} title="Secure" />
+          <ActionAreaCard icon={<CardMembershipIcon />} title="Authorized" />
+          <ActionAreaCard icon={<AppRegistrationIcon />} title="Complaints" />
         </div>
       </main>
     </>
