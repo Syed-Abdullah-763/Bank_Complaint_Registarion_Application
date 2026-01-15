@@ -9,6 +9,7 @@ import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import CardMembershipIcon from "@mui/icons-material/CardMembership";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -28,7 +29,7 @@ const HomePage = () => {
             />
             <NavigateBtn
               variant="outlined"
-              text="SignIn"
+              text="LogIn"
               bgColor=""
               bgHover="#aed6be"
               color="#149949"
@@ -60,7 +61,7 @@ const HomePage = () => {
             <div className="h-10 flex pl-5 gap-3 justify-end pr-6">
               <NavigateBtn
                 variant="contained"
-                text="SignUp"
+                text="Sign-Up"
                 bgColor="#149949"
                 bgHover="#0d853d"
                 path="/signup"
@@ -70,7 +71,7 @@ const HomePage = () => {
               />
               <NavigateBtn
                 variant="outlined"
-                text="SignIn"
+                text="Sign-In"
                 bgColor=""
                 bgHover="#aed6be"
                 color="#149949"
@@ -188,11 +189,32 @@ const HomePage = () => {
             </Button>
           </div>
 
-          <div className="flex flex-col items-center sm:flex-row sm:justify-center w-full sm:w-1/2 min-h-20 gap-5 p-5">
-            <h4 className="text-white text-[20px]">Login</h4>
-            <h4 className="text-white text-[20px]">SignUp</h4>
-            <h4 className="text-white text-[20px]">Contact</h4>
+          <div className="flex flex-col items-center sm:flex-row sm:justify-center sm:gap-20 w-full sm:w-1/2 min-h-20 gap-5 p-5">
+            <Link
+              to="/login"
+              className="text-white text-[20px] hover:text-[#a1e59e] hover:text-[21px] transition-all duration-200"
+            >
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="text-white text-[20px]  hover:text-[#a1e59e] hover:text-[21px] transition-all duration-200"
+            >
+              Signup
+            </Link>
+            <Link
+              to="/contact"
+              className="text-white text-[20px]  hover:text-[#a1e59e] hover:text-[21px] transition-all duration-200"
+            >
+              Contact
+            </Link>
           </div>
+        </div>
+        <div className="w-full min-h-15 flex items-center justify-center bg-[#149949] text-white border-t p-5">
+          <h1 className="w-70 sm:w-1/2 text-center">
+            Privacy Policy Terms and Condition Copyright Hiringmine 2026. All
+            Rights Reserved
+          </h1>
         </div>
       </footer>
     </>
