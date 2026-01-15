@@ -7,6 +7,8 @@ import AssuredWorkloadIcon from "@mui/icons-material/AssuredWorkload";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import CardMembershipIcon from "@mui/icons-material/CardMembership";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 const HomePage = () => {
   return (
@@ -139,6 +141,60 @@ const HomePage = () => {
           <ActionAreaCard icon={<AppRegistrationIcon />} title="Complaints" />
         </div>
       </main>
+
+      <footer>
+        <div className="min-h-40 w-full flex flex-col-reverse sm:flex-row gap-5 bg-[#149949] p-8">
+          <div className="flex flex-col sm:flex-row w-full sm:w-1/2 gap-5 items-center">
+            <TextField
+              label="Your response"
+              variant="outlined"
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  backgroundColor: "transparent",
+                  color: "white",
+                  "& fieldset": {
+                    borderColor: "white",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "white",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "white",
+                  },
+                },
+                "& .MuiInputLabel-root": {
+                  color: "white",
+                },
+                "& .MuiInputLabel-root.Mui-focused": {
+                  color: "white",
+                },
+              }}
+            />
+            <Button
+              variant="outlined"
+              sx={{
+                color: "white",
+                borderColor: "white",
+                backgroundColor: "transparent",
+                width: 80,
+                height: 40,
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  borderColor: "white",
+                },
+              }}
+            >
+              Submit
+            </Button>
+          </div>
+
+          <div className="flex flex-col items-center sm:flex-row sm:justify-center w-full sm:w-1/2 min-h-20 gap-5 p-5">
+            <h4 className="text-white text-[20px]">Login</h4>
+            <h4 className="text-white text-[20px]">SignUp</h4>
+            <h4 className="text-white text-[20px]">Contact</h4>
+          </div>
+        </div>
+      </footer>
     </>
   );
 };
