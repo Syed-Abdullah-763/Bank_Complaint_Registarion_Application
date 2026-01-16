@@ -1,36 +1,51 @@
 import { Controller, useForm } from "react-hook-form";
 import ExitHeader from "../../components/ExitHeader";
 import LoginContent from "../../components/loginContent";
-import { TextField, Button } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  FormLabel,
+  FormHelperText,
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "../../store/features/auth/auth.thunk";
 import { Link } from "react-router-dom";
 
-const LoginPage = () => {
+const SignUpPage = () => {
   const {
     register,
     handleSubmit,
     control,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
+      name: "",
       email: "",
       password: "",
+      role: "",
+      bankName: "",
+      bankId: "",
     },
   });
 
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((store) => store.authReducer);
+  const { loading } = useSelector((store) => store.authReducer);
 
-  if (error) {
-    console.log(error);
-    alert(error);
-  }
+  let role = watch("role");
+  console.log(role);
 
   const loginHandler = async (obj) => {
     try {
-      dispatch(loginThunk(obj));
+      console.log(obj);
+
+      //   dispatch(loginThunk(obj));
     } catch (error) {
+      console.log(error);
       alert(error.message);
     }
   };
@@ -70,15 +85,15 @@ const LoginPage = () => {
             <LoginContent />
           </div>
 
-          <div className="w-full md:w-1/2 h-110">
+          <div className="w-full md:w-1/2 min-h-110">
             <div className="h-full flex items-center justify-center bg-gradient-to-br ">
               <div className="w-full max-w-md h-full bg-white rounded-2xl shadow-xl p-8">
                 {/* Header */}
                 <h2 className="text-2xl font-bold text-center text-gray-800 mb-2">
-                  Welcome Back
+                  Create Account
                 </h2>
                 <p className="text-sm text-gray-500 text-center mb-6">
-                  Login to your account
+                  Signup to your account
                 </p>
 
                 {/* Form */}
@@ -86,6 +101,30 @@ const LoginPage = () => {
                   onSubmit={handleSubmit(loginHandler)}
                   className="flex gap-5 flex-col"
                 >
+                  {/* Name */}
+                  <Controller
+                    name="name"
+                    control={control}
+                    rules={{
+                      required: "Password is required",
+                      minLength: {
+                        value: 3,
+                        message: "Minimum 3 characters",
+                      },
+                    }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        type="text"
+                        label="Full Name"
+                        error={!!errors.password}
+                        helperText={errors.password?.message}
+                        sx={inputSX}
+                      />
+                    )}
+                  />
+
                   {/* Email */}
                   <Controller
                     name="email"
@@ -133,6 +172,83 @@ const LoginPage = () => {
                     )}
                   />
 
+                  <FormControl error={!!errors.choice}>
+                    <FormLabel
+                      sx={{
+                        color: "#149949",
+                        "&.Mui-focused": { color: "#149949" },
+                      }}
+                    >
+                      Role
+                    </FormLabel>
+
+                    <Controller
+                      name="role"
+                      control={control}
+                      rules={{ required: "Please select your role" }}
+                      render={({ field }) => (
+                        <RadioGroup {...field} row>
+                          <FormControlLabel
+                            value="customer"
+                            label="Customer"
+                            control={
+                              <Radio
+                                sx={{
+                                  color: "#149949",
+                                  "&.Mui-checked": {
+                                    color: "#149949",
+                                  },
+                                }}
+                              />
+                            }
+                          />
+
+                          <FormControlLabel
+                            value="bank_officer"
+                            label="Bank Officer"
+                            control={
+                              <Radio
+                                sx={{
+                                  color: "#149949",
+                                  "&.Mui-checked": {
+                                    color: "#149949",
+                                  },
+                                }}
+                              />
+                            }
+                          />
+                        </RadioGroup>
+                      )}
+                    />
+
+                    <FormHelperText>{errors.choice?.message}</FormHelperText>
+                  </FormControl>
+
+                  {role === "bank_officer" && (
+                    <Controller
+                      name="bankId"
+                      control={control}
+                      rules={{
+                        required: "Bank Id is required",
+                        minLength: {
+                          value: 3,
+                          message: "Minimum 3 characters",
+                        },
+                      }}
+                      render={({ field }) => (
+                        <TextField
+                          {...field}
+                          fullWidth
+                          type="text"
+                          label="Bank Id"
+                          error={!!errors.bankId}
+                          helperText={errors.bankId?.message}
+                          sx={inputSX}
+                        />
+                      )}
+                    />
+                  )}
+
                   {/* Button */}
                   <Button
                     type="submit"
@@ -149,16 +265,16 @@ const LoginPage = () => {
                       },
                     }}
                   >
-                    {loading ? "Loading" : "Login"}
+                    {loading ? "Loading" : "SignUp"}
                   </Button>
                 </form>
                 <p className="text-[#149949] text-center mt-5 text-[14px]">
                   OR
                 </p>
                 <p className="text-center mt-3 text-[17px]">
-                  Create new account?{" "}
-                  <Link to="/signup" className="text-[#149949] underline">
-                    SignUp
+                  Already have an account?{" "}
+                  <Link to="/login" className="text-[#149949] underline">
+                    Login
                   </Link>
                 </p>
               </div>
@@ -170,4 +286,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;

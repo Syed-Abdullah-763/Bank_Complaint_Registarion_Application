@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    bankName: {
+      type: String,
+      required: true,
+    },
     role: {
       type: String,
       enum: ["customer", "bank_officer", "sbp_admin"],
@@ -24,7 +28,7 @@ const userSchema = new mongoose.Schema(
       ref: "bank",
     },
   },
-  { timeseries: true }
+  { timeseries: true },
 );
 
 const userModel = mongoose.model("user", userSchema);
